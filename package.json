@@ -1,0 +1,40 @@
+{
+  "name": "docket-alarm-sdk",
+  "version": "1.0.0",
+  "description": "This is an NPM package to easily access Docket Alarm APIs in React.",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "homepage": "https://github.com/mbussert/docket-alarm-sdk",
+  "repository": {
+    "url": "https://github.com/mbussert/docket-alarm-sdk"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsup"
+  },
+  "keywords": [
+    "docket",
+    "alarm",
+    "docket alarm",
+    "react",
+    "legal",
+    "law"
+  ],
+  "author": "Michael Bussert",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "^18.2.61",
+    "tsup": "^8.0.2",
+    "typescript": "^5.3.3"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

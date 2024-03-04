@@ -16,9 +16,15 @@ export abstract class Base {
   constructor(auth: Auth) {
     this.username = auth.username;
     this.password = auth.password;
+    this.login(this.username, this.password);
   }
 
   protected async login(username: string, password: string): Promise<void> {
+    // Check for token, if exists, has time expired?
+    if (this.loginToken && this.tokenExpirationTime < Date.now()) {
+      return;
+    }
+
     try {
       const loginUrl = `${this.baseUrl}${Endpoints.Login}`;
 
@@ -26,8 +32,8 @@ export abstract class Base {
       loginHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
       const urlEncoded = new URLSearchParams();
-      urlEncoded.append("username", this.username);
-      urlEncoded.append("password", this.password);
+      urlEncoded.append("username", username);
+      urlEncoded.append("password", password);
 
       const requestOptions = {
         method: "POST",
@@ -41,7 +47,7 @@ export abstract class Base {
         const data = await response.json();
 
         this.loginToken = data.login_token;
-        this.tokenExpirationTime = Date.now() * 1000;
+        this.tokenExpirationTime = Date.now() + this.tokenExpirationThreshold;
         console.log("Data Response: ", data);
         console.log("Login Token: ", this.loginToken);
         console.log("Expires: ", this.tokenExpirationTime);

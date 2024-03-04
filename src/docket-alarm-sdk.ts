@@ -1,43 +1,45 @@
+import { Base } from "./base";
+
 type Auth = {
   username: string;
   password: string;
 };
 
-export class DocketAlarm {
-  private username: string;
-  private password: string;
-  private base_api: string = "https://www.docketalarm.com/api/v1/";
-  private loginToken: string | null = null;
+export class DocketAlarm extends Base {
+  // private username: string;
+  // private password: string;
+  // private base_api: string = "https://www.docketalarm.com/api/v1/";
+  // private loginToken: string | null = null;
 
-  constructor({ username, password }: Auth) {
-    if (!username || !password) {
-      throw new Error("Missing authentication credentials.");
-    }
+  // constructor({ username, password }: Auth) {
+  //   if (!username || !password) {
+  //     throw new Error("Missing authentication credentials.");
+  //   }
 
-    this.username = username;
-    this.password = password;
-    this.loginUser();
-  }
+  //   this.username = username;
+  //   this.password = password;
+  //   this.loginUser();
+  // }
 
-  private async loginUser() {
-    try {
-      const encodeUser = encodeURI(this.username);
-      const loginUrl = `${this.base_api}login?username=${encodeUser}&password=${this.password}`;
+  // private async loginUser() {
+  //   try {
+  //     const encodeUser = encodeURI(this.username);
+  //     const loginUrl = `${this.base_api}login?username=${encodeUser}&password=${this.password}`;
 
-      const response = await fetch(loginUrl, {
-        method: "POST",
-      });
+  //     const response = await fetch(loginUrl, {
+  //       method: "POST",
+  //     });
 
-      if (response.ok) {
-        const responseData = await response.json();
-        this.loginToken = responseData.login_token;
-      } else {
-        throw new Error("User login failed.");
-      }
-    } catch (error: any) {
-      console.error("Login failed: ", error.message);
-    }
-  }
+  //     if (response.ok) {
+  //       const responseData = await response.json();
+  //       this.loginToken = responseData.login_token;
+  //     } else {
+  //       throw new Error("User login failed.");
+  //     }
+  //   } catch (error: any) {
+  //     console.error("Login failed: ", error.message);
+  //   }
+  // }
 
   // Search Docket Alarm
   // The search/ endpoint searches every docket and document on Docket Alarm.
